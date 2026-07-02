@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}Not found{% endblock %}
+{% block content %}<section class="result-wrap shell"><div class="card result-card"><div class="result-badge retry">?</div><h1>Page not found</h1><p class="muted">That page wandered outside the syllabus.</p><a class="primary button-link" href="{{ url_for('index') }}">Back home</a></div></section>{% endblock %}

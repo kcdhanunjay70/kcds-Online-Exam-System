@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6d4aff">
+  <title>{% block title %}Quizora{% endblock %} · Online Exam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">Q</span><span>Quizora</span></a>
+    <span class="secure-pill"><span>●</span> Secure assessment</span>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer>Built with Flask + MongoDB <span>•</span> Focus. Think. Achieve.</footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

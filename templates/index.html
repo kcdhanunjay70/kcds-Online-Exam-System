@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<section class="hero shell">
+  <div class="hero-copy">
+    <div class="eyebrow">Knowledge meets momentum</div>
+    <h1>Ready to show<br><span>what you know?</span></h1>
+    <p>Take a focused, fair, and beautifully simple assessment. Your next personal best starts here.</p>
+    <div class="stats">
+      <div><strong>{{ question_count }}</strong><span>Questions</span></div>
+      <div><strong>10</strong><span>Minutes</span></div>
+      <div><strong>60%</strong><span>To pass</span></div>
+    </div>
+  </div>
+  <div class="card registration-card">
+    <div class="card-icon">✦</div>
+    <p class="overline">Candidate access</p>
+    <h2>Start your assessment</h2>
+    <p class="muted">Enter your details. The timer begins after you continue.</p>
+    {% if request.args.get('error') %}<div class="alert">{{ request.args.get('error') }}</div>{% endif %}
+    <form method="post" action="{{ url_for('start') }}">
+      <label>Full name<input name="name" autocomplete="name" placeholder="e.g. K. C. Dhanunjay" required></label>
+      <label>Email address<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+      <button class="primary" type="submit">Begin exam <span>→</span></button>
+    </form>
+    <div class="fine-print">By continuing, you agree to follow the exam guidelines.</div>
+  </div>
+</section>
+<section class="features shell">
+  <article><span class="feature-icon coral">◷</span><div><h3>Timed & focused</h3><p>A clear countdown helps you pace every answer.</p></div></article>
+  <article><span class="feature-icon violet">✓</span><div><h3>Instant results</h3><p>See your score and performance right away.</p></div></article>
+  <article><span class="feature-icon cyan">⌁</span><div><h3>Auto-saved</h3><p>Your choices stay safe in this browser.</p></div></article>
+</section>
+{% endblock %}

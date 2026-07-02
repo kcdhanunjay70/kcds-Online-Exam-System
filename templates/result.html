@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Results{% endblock %}
+{% block content %}
+<section class="result-wrap shell">
+  <div class="card result-card">
+    <div class="result-badge {{ 'pass' if result.passed else 'retry' }}">{{ '★' if result.passed else '↻' }}</div>
+    <p class="overline">Assessment complete</p>
+    <h1>{{ 'Excellent work!' if result.passed else 'Keep learning!' }}</h1>
+    <p class="muted">{{ result.candidate.name }}, {{ 'you passed the assessment.' if result.passed else 'you are close—review and try again.' }}</p>
+    <div class="score-ring" style="--score: {{ result.percentage }}"><div><strong>{{ result.percentage }}%</strong><span>Final score</span></div></div>
+    <div class="result-stats">
+      <div><strong>{{ result.score }}</strong><span>Correct</span></div>
+      <div><strong>{{ result.attempted }}</strong><span>Attempted</span></div>
+      <div><strong>{{ result.total - result.attempted }}</strong><span>Skipped</span></div>
+    </div>
+    <a class="primary button-link" href="{{ url_for('index') }}">Take another exam →</a>
+  </div>
+</section>
+{% endblock %}

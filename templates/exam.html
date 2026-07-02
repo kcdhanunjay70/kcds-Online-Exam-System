@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Assessment{% endblock %}
+{% block content %}
+<section class="exam-shell shell">
+  <aside class="exam-sidebar card">
+    <p class="overline">Candidate</p>
+    <h3>{{ candidate.name }}</h3><p class="muted">{{ candidate.email }}</p>
+    <div class="timer-box"><span>Time remaining</span><strong id="timer" data-seconds="{{ exam_seconds }}">10:00</strong></div>
+    <div class="progress-label"><span>Progress</span><strong id="progress-text">0 / {{ questions|length }}</strong></div>
+    <div class="progress-track"><i id="progress-bar"></i></div>
+    <div class="palette" aria-label="Question navigator">
+      {% for question in questions %}<button type="button" data-jump="{{ loop.index0 }}">{{ loop.index }}</button>{% endfor %}
+    </div>
+    <div class="legend"><span><i class="answered-dot"></i> Answered</span><span><i></i> Not answered</span></div>
+  </aside>
+  <form id="exam-form" class="question-area" method="post" action="{{ url_for('submit') }}">
+    {% for question in questions %}
+    <article class="question-card card{% if not loop.first %} hidden{% endif %}" data-question="{{ loop.index0 }}">
+      <div class="question-meta"><span>Question {{ loop.index }} of {{ questions|length }}</span><span class="category">{{ question.category }}</span></div>
+      <h2>{{ question.question }}</h2>
+      <div class="options">
+        {% for option in question.options %}
+        <label><input type="radio" name="question_{{ question.id }}" value="{{ loop.index0 }}"><span class="option-letter">{{ "ABCD"[loop.index0] }}</span><span>{{ option }}</span><i>✓</i></label>
+        {% endfor %}
+      </div>
+      <div class="question-actions">
+        <button class="secondary prev" type="button" {% if loop.first %}disabled{% endif %}>← Previous</button>
+        {% if loop.last %}<button class="primary submit-trigger" type="button">Submit exam ✓</button>
+        {% else %}<button class="primary next" type="button">Next question →</button>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </form>
+</section>
+<div class="modal hidden" id="submit-modal"><div class="modal-card card"><div class="modal-icon">✓</div><h2>Submit your exam?</h2><p id="modal-summary">Please review your answers before submitting.</p><div><button class="secondary" id="keep-reviewing" type="button">Keep reviewing</button><button class="primary" id="confirm-submit" type="button">Submit now</button></div></div></div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/exam.js') }}"></script>{% endblock %}
