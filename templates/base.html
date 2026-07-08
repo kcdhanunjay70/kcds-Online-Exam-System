@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6d4aff">
-  <title>{% block title %}Quizora{% endblock %} · Online Exam</title>
+  <title>{% block title %}Quizora{% endblock %} Â· Online Exam</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,10 +14,26 @@
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <header class="site-header">
     <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">Q</span><span>Quizora</span></a>
-    <span class="secure-pill"><span>●</span> Secure assessment</span>
+    <span class="secure-pill"><span>â—</span> Secure assessment</span>
   </header>
   <main>{% block content %}{% endblock %}</main>
-  <footer>Built with Flask + MongoDB <span>•</span> Focus. Think. Achieve.</footer>
   {% block scripts %}{% endblock %}
+  <footer class="site-footer">
+    <div class="footer-banner">
+      <img src="{{ url_for('static', filename='Footer.png') }}" alt="Google Search - K.C.Dhanunjay Infosys special features, contact number, address and website" loading="lazy" decoding="async">
+    </div>
+    <div class="footer-contact">
+      <div>
+        <span class="footer-label">Training &amp; Project Support</span>
+        <h2>Google Search - K.C.Dhanunjay Infosys</h2>
+        <p>Expert faculty, practical training, certification, placement support and flexible batches.</p>
+      </div>
+      <div class="footer-actions">
+        <a href="https://wa.me/9494705353" target="_blank" rel="noopener">Call 9494705353</a>
+        <a href="https://kcdhanunjayinfosys.onrender.com/" target="_blank" rel="noopener">Visit Website</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 K.C.Dhanunjay Infosys</span><span>Near APSRTC Busstand, Above Friends Hotel, Guntakal - 515801</span></div>
+  </footer>
 </body>
 </html>
